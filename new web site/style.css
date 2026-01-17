@@ -316,6 +316,19 @@ html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
 .f-desc { display: none !important; }
 
 
+
+
+.navbar {
+        position: fixed !important;
+        top: 0 !important;
+        z-index: 9999 !important; /* இது ஐகான்களை விட அதிகம் */
+        background: #ffffff !important; /* பின்புலம் தெரிந்தால் தான் ஐகான் மறையும் */
+    }
+
+
+
+
+
 /* --- All Mobile Devices View --- */
 @media screen and (max-width: 992px) {
     
@@ -366,59 +379,85 @@ html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
 }
 
 
-/* 2. டேப்லெட் மற்றும் சிறிய லேப்டாப் (Tablets) */
-/* டேப்லெட் மற்றும் மொபைல் (992px-க்கு கீழே) */
-/* டேப்லெட் மற்றும் மொபைல் (992px-க்கு கீழே) */
-/* மொபைல் மற்றும் டேப்லெட் வியூ */
-/* 992px-க்கு கீழ் உள்ள டேப்லெட் மற்றும் அனைத்து மொபைல்களுக்கும் */
-@media (max-width: 992px) {
+@media screen and (max-width: 992px) {
+    /* 1. மெயின் பேனர் அமைப்பு */
+    .banner {
+        display: block !important;
+        position: relative !important;
+        height: 220px !important;
+        background-color: #e9e9e9 !important; /* பின்னணி நிறம் இங்கே லாக் செய்யப்பட்டுள்ளது */
+        overflow: hidden !important;
+        padding: 0 !important;
+    }
+
+    /* 2. பேனர் படம் (Visibility & Size Fix) */
     .banner-image {
-        display: flex !important;       /* பிளெக்ஸ் முறையை உறுதி செய்ய */
-        justify-content: flex-end !important; /* வலது முனைக்கு தள்ள (இதுதான் முக்கியம்) */
-        width: 100% !important;         /* முழு அகலத்தையும் எடுத்துக்கொள்ள */
-        background: none !important;    /* பழைய வட்டம் இருந்தால் நீக்க */
-        margin: 10px 0 !important;      /* சென்டர் மார்ஜினை நீக்க */
+        display: flex !important;
+        position: absolute !important;
+        right: 10px !important; /* வலது ஓரம் */
+        bottom: 10px !important; /* கீழே லாக் */
+        width: 140px !important; /* அளவு */
+        justify-content: flex-end !important;
+        z-index: 5 !important;
+        background: transparent !important;
     }
 
     .banner-image img {
-        width: 140px;                   /* உங்கள் படத்தின் அளவு */
-        height: auto;
-        margin-right: 10px;             /* திரையின் ஓரத்திலிருந்து லேசான இடைவெளி */
+        width: 140px !important; /* படத்தின் அகலத்தை உறுதி செய்கிறது */
+        height: auto !important;
+        object-fit: contain !important;
+        margin-bottom: 25px;
+        display: block !important;
     }
 
-    /* ஒருவேளை ஐகான் பயன்படுத்தினால் */
-    .laptop-icon {
-        margin-left: auto;              /* வலது பக்கம் தள்ளும் */
-        font-size: 3rem;
+    /* 3. பேனர் எழுத்துக்கள் (Position Lock) */
+    .banner-content {
+        position: absolute !important;
+        left: 15px !important;
+        top: 100px !important;
+        width: 50% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        z-index: 10 !important;
+        margin-left: 0 !important;
     }
-}
 
-.banner-content {
-     margin-left: 10px;
-}
+    .main-heading {
+        font-size: 15px !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+        text-align: left !important;
+    }
 
-@media (max-width: 992px) {
+    /* 4. பாராகிராப் (Paragraph Fix) */
     .thin-p.one-line-p {
-        /* எழுத்தின் அளவை 12px ஆகக் குறைக்கிறது */
-        font-size: 7px !important; 
-        
-        /* வாக்கியம் அடுத்த வரிக்குச் செல்லாமல் ஒரே வரியில் இருக்கும் */
-        white-space: nowrap; 
-        
-        /* எழுத்துக்கள் மெல்லியதாகத் தெரிய */
-        font-weight: 300; 
-        
-        /* நீங்கள் கேட்டபடி வலது பக்கம் நகர்த்த */
-        text-align: right; 
-        
-        /* ஓரத்திலிருந்து சிறிய இடைவெளி */
-        padding-right: 15px; 
-        
-        margin: 5px 0;
-        display: block;
-        width: 100%;
+        font-size: 8px !important; 
+        white-space: nowrap !important;
+        font-weight: 300 !important;
+        text-align: left !important; /* Right-க்கு பதில் Left கொடுத்துள்ளேன், அப்போதுதான் Heading உடன் சேரும் */
+        margin: 0 !important;
+        display: block !important;
+        width: auto !important;
+    }
+
+    /* 5. வாட்ஸ்அப் பட்டன் (Perfect Size) */
+    .whatsapp-btn-live {
+        display: inline-flex !important;
+        width: 135px !important;
+        height: 38px !important;
+        background-color: #25d366 !important;
+        color: white !important;
+        border-radius: 50px !important;
+        font-size: 11px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-top: 5px !important;
+        text-decoration: none !important;
     }
 }
+
+
 
 
 @media (max-width: 992px) {
@@ -477,67 +516,85 @@ html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
 }
 
 
+
+
+
+
 /* --- 3 Social media icon) --- */
 
 
 
 
 @media screen and (max-width: 1023px) {
-    
+    /* 1. ஐகான் பெட்டி - நேவ்பாருக்குக் கீழே நகர்த்தப்பட்டுள்ளது */
     .social-stock-container {
         display: flex !important;
         flex-direction: row !important;
         position: absolute !important; 
-        
-        /* இடது ஓரத்தில் லாக் செய்ய (Left End) */
         left: 30px !important; 
         
-        /* எல்லா மொபைல் உயரத்திற்கும் பொருந்தும்படி %-இல் வைக்கப்பட்டுள்ளது */
-        top: 29% !important; 
+        /* நேவ்பாருக்குச் சரியாகக் கீழே லாக் செய்யப்பட்டுள்ளது */
+        top: 190px !important; 
         
         gap: 6px !important;
         z-index: 2000 !important;
-        width: fit-content !important;
-        padding-left: 0px !important;
     }
 
+    /* 2. உங்கள் அதே ஐகான் டிசைன் - கோடுகள் நீக்கப்பட்டுள்ளது */
     .stock-icon {
         width: 15px !important; 
         height: 15px !important;
-        min-width: 15px !important;
-        min-height: 15px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         border-radius: 2px !important; 
-        text-decoration: none !important;
-        transition: transform 0.2s ease !important;
-        flex-shrink: 0 !important;
+        
+        /* கோடுகளை நீக்க */
+        text-decoration: none !important; 
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .stock-icon i {
         font-size: 7px !important; 
         color: #ffffff !important;
+        text-decoration: none !important;
         line-height: 1 !important;
         display: block !important;
     }
 
-    /* பிராண்ட் நிறங்கள் */
+    /* உங்கள் ஒரிஜினல் நிறங்கள் மாறாது */
     .yt-bg { background-color: #ff0000 !important; }
     .be-bg { background-color: #053eff !important; }
     .ig-bg { background-color: #e4405f !important; }
-
-    /* கிளிக் செய்யும் போது சிறிய அனிமேஷன் */
-    .stock-icon:active {
-        transform: scale(0.9) !important;
-    }
 }
-@media screen and (max-width: 1023px) {
-    /* 1. நேவ்பாரை கீழே தள்ள */
-    .navbar {
-        top: 0px !important;
-        position: fixed !important;
-        z-index: 9999 !important;
-    }
+
+/* 3. இது இருந்தால் மட்டுமே ஐகான்கள் பேனருக்குள் நிலையாக இருக்கும் */
+.banner {
+    position: relative !important;
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
