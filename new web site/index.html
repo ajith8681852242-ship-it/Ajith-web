@@ -76,9 +76,9 @@
             <img src="web-design-png-8812 copy.png" alt="Banner Image" class="custom-img">
         </div> 
     </div>
-
 <div id="status-final-safe-layer"></div>
-
+               
+<div id="status-final-safe-layer"></div>
 <script>
 (function() {
     const host = document.querySelector('#status-final-safe-layer');
@@ -89,33 +89,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap');
         
-        /* 1. நேவ்பாரை கீழே தள்ள (Navbar Down) */
-        :host-context(body) .navbar { 
-            top: 30px !important; 
-            position: fixed !important;
-        }
-
-        /* 2. டைமர் மற்றும் ஐகான்களை அடியில் லாக் செய்ய (Bottom Fix) */
         :host { 
-            position: absolute !important; 
-            left: 0 !important;
-            width: 100% !important;
-            /* பிக்சல் (px) மதிப்பை நீக்கிவிட்டு bottom பயன்படுத்துகிறோம் */
-            bottom: 20px !important; 
-            top: auto !important; 
-            display: flex !important;
-            justify-content: center !important;
+            /* இது பேனரைத் தொடவே தொடாது - No Disturbance */
+            position: absolute; 
+            left: 70%;
+            transform: translateX(-50%);
+            /* "Small top move" - பேனரின் மேல்பகுதிக்குக் கொண்டு செல்ல */
+            top: 645px; 
+            z-index: 9999;
+            width: 100%;
+            display: block;
             pointer-events: none;
-        }
-
-        /* 3. சோஷியல் ஐகான்களை கீழே கொண்டு வர */
-        :host-context(body) .social-stock-container {
-            position: absolute !important;
-            bottom: 20px !important;
-            top: auto !important;
-            left: 20px !important;
-            display: flex !important;
-            gap: 10px !important;
         }
 
         .container {
@@ -126,21 +110,30 @@
             pointer-events: auto;
         }
 
-        .row { display: flex; align-items: center; gap: 8px; }
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
+        /* லேப்டாப்பில் பெரிய அளவு (Big Size) */
         .status-text {
-            font-size: 22px; 
+            font-size: 25px; 
             font-weight: 800;
             text-transform: uppercase;
             line-height: 1;
         }
 
         .icon-box {
-            position: relative; width: 14px; height: 14px;
-            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .dot { width: 8px; height: 8px; background-color: currentColor; border-radius: 50%; }
+        .dot { width: 10px; height: 10px; background-color: currentColor; border-radius: 50%; }
         .ring {
             position: absolute; width: 100%; height: 100%;
             border: 2px solid currentColor; border-radius: 50%;
@@ -152,21 +145,24 @@
             100% { transform: scale(3); opacity: 0; }
         }
 
+        /* நேரம் அடுத்த வரியில் கறுப்பு நிறத்தில் */
         .daily-time {
-            font-size: 12px;
-            color: #000; 
+            font-size: 10px;
+            color: #000000; 
             font-weight: 700;
-            margin-top: 3px;
+            margin-top: 6px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* மொபைல் வியூ - அஜித்குமார், இதைச் சேர்த்தால் மட்டுமே மொபைலில் வேலை செய்யும் */
-        @media (max-width: 1023px) {
-            :host { bottom: 515px !important; }
-            .status-text { font-size: 9px; }
-            .daily-time { font-size: 6px; }
-            :host-context(body) .navbar { top: 25px !important; }
-            :host-context(body) .social-stock-container { bottom: 15px !important; left: 15px !important; }
+        /* மொபைல் வியூ (Small Size for Mobile) */
+        @media (max-width: 768px) {
+            :host { top: 190px; left: 50%; z-index: 1000;}
+            .status-text { font-size: 10px; }
+            .daily-time { font-size: 3px; margin-top: 3px; }
+            .icon-box { width: 10px; height: 10px; }
+            .dot { width: 5px; height: 5px; }
+            .row { gap: 5px; }
         }
     </style>
     
@@ -186,7 +182,10 @@
         const h = new Date().getHours();
         const wrap = shadow.querySelector('#ui-wrap');
         const label = shadow.querySelector('#ui-label');
+        
+        // 9 AM - 7 PM 
         const isOpen = (h >= 9 && h < 19);
+
         const color = isOpen ? '#2ecc71' : '#e74c3c';
         wrap.style.color = color;
         label.textContent = isOpen ? 'OPEN' : 'CLOSED';
@@ -195,7 +194,6 @@
     setInterval(update, 30000);
 })();
 </script>
-
            </section> <div class="feature-strip">
             <div class="f-box purple">
                 <div class="f-content">
